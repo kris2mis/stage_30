@@ -7,45 +7,31 @@
 #  reset (обнуление значения внутреннего счётчика);
 #  view или display (для просмотра текущего состояния счётчика).
 
-#НЕ ПОЛУЧИЛОСЬ
-
 class Counter:
-    def __init__(self, count=0):
-        self.count = count
+    def __init__(self, value=0):
+        self._value = value
+        self._start_with = value
 
     def increment(self):
-        self.count+=1
-        return self.count
+        self._value += 1
 
     def decrement(self):
-        self.count -=1
-        return self.count
+        self._value -= 1
 
     def reset(self):
-        self.count = 0
-        return self.count
+        self._value = self._start_with
 
-    def display(self):
-        return f"The current state of counter is {self.count}. "
-
-
-def main():
-    counter1 = Counter(5)
-    counter1.increment()
-    counter1.increment()
-    counter1.increment()
-    print(counter1.display())
-    counter1.decrement()
-    print(counter1.display())
-    counter1.reset()
-    print(counter1.display())
-
-    counter2 = Counter(0)
-    counter2.increment()
-    counter2.increment()
-    print(counter2.display())
+    def __str__(self):
+        return f"The current state of the counter is {self._value}."
 
 
-main()
+counter1 = Counter()
+counter1.increment()
+counter1.increment()
+print(counter1)
 
+counter2 = Counter(5)
+counter2.decrement()
+counter2.decrement()
+print(counter2)
 
